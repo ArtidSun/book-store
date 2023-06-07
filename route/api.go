@@ -16,4 +16,5 @@ func NewRoute(e *echo.Echo) *Route {
 
 func (r *Route) NewBookRoute(handler services.HandlerInterface) {
 	r.e.GET("/hello-world", handler.HelloWorld)
+	r.e.GET("/books/list", handler.FetchListBooks)
 }

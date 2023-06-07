@@ -1,7 +1,12 @@
 package usecase
 
 import (
+	"book-store/models"
 	"book-store/services"
+	"context"
+	"sync"
+
+	helperModel "git.innovasive.co.th/backend/models"
 )
 
 type bookUsecase struct {
@@ -12,4 +17,8 @@ func NewBookUsecase(bookRepo services.RepositoryInterface) services.UsecaseInter
 	return &bookUsecase{
 		bookRepo: bookRepo,
 	}
+}
+
+func (b bookUsecase) FetchListBooks(ctx context.Context, args *sync.Map, paginator *helperModel.Paginator) ([]*models.Books, error) {
+	return b.bookRepo.FetchListBooks(ctx, args, paginator)
 }
